@@ -1,4 +1,4 @@
-// gcc -Og bomba.c -o bomba -no-pie -fno-guess-branch-probability
+// gcc -Og bomba.c -o bomba -no-pie -fno-guess-branch-probability -lm
 
 #include <stdio.h>	// para printf(), fgets(), scanf()
 #include <stdlib.h>	// para exit()
@@ -10,7 +10,7 @@
 #define TLIM 5
 
 char password[]="JbjUnpxrq!\n";	// contraseña
-int  passcode  = 7659;			// pin
+int  passcode  = 2642;			// pin
 
 void boom(void){
 	printf(	"\n"
@@ -37,7 +37,7 @@ void defused(void){
  */
 char * encode(char * pw, int size){
 	const int ROT = 13;
-	char * encoded = malloc((size/*+1*/)*sizeof(*encoded));
+	char * encoded = malloc((size)*sizeof(*encoded));
 	char c;
 	for (int i = 0; i < size; i++){
 
@@ -68,27 +68,14 @@ char * encode(char * pw, int size){
 	return encoded;
 }
 
-int pinEncode(int code){
-    const int BASE = 10;
-    int num = code;
-	int encoded[4];
-	int output;
 
-	for (int i = 0; i < 4; i++){
-		encoded[i] = code/pow(10,3-i);
-		num -= num/pow(10,3-i);
-	}
+int pinEncode(int pin){
+    const int MAX = 10000;
+    int encoded;
 
-	for (int i = 0; i < 4; i++){
-		encoded[i] =encoded[i]*(i+1);
-		encoded[i] = encoded[i]%BASE;
-		encoded[i] = BASE - encoded[i];
-	}
-	for (int i = 0; i <4 ; i++){
-		output += encoded[i]*pow(10,3-i);
-	}
+	encoded = MAX - pin;
 
-	return output;
+	return encoded;
 }
 
 int main(){
@@ -111,7 +98,7 @@ int main(){
 	 if ((n=scanf("%i",&pc))==0)
 		scanf("%*s")    ==1;         }
 	while (	n!=1 );
-
+	
 	if    (	pinEncode(pc) != passcode )
 	    boom();
 
