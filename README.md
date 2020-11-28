@@ -2,4 +2,4 @@
 Compueter's structures 
 
 
-This is a program made to get knoledge at assembly and GDB
+This program was made to get knoledge about assembly and GDB
