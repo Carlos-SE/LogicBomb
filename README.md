@@ -1,5 +1,5 @@
 # LogicBomb
-Compueter's structures 
+Computer's structures 
 
 
-This program was made to get knoledge about assembly and GDB
+This program was made to get knowledge about assembly and GDB
